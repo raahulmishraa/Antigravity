@@ -1,0 +1,40 @@
+{
+  "applications": [
+    {
+      "id": "app-1",
+      "company": "Stripe",
+      "role": "Staff Software Engineer, Distributed Infrastructure",
+      "location": "Remote - Worldwide",
+      "workType": "Remote",
+      "url": "https://stripe.com/jobs",
+      "matchScore": 94,
+      "status": "tailored",
+      "dateDiscovered": "2026-09-20",
+      "dateApplied": null,
+      "notes": "Focused on C++ & Java high-throughput distributed transaction processing. Tailored resume highlights 777X latency cuts and mTLS security.",
+      "resumeVersion": "Stripe_Staff_Engineer_Tailored.pdf",
+      "screeningAnswers": {
+        "whyUs": "Stripe's commitment to high availability and ultra-low latency infrastructure directly mirrors the zero-defect safety-critical systems I architected at Boeing.",
+        "distributedSystems": "Led architecture of 10-microservice event-driven platform cutting latency by 30% using Kafka, C++, and Linux socket IPC."
+      }
+    },
+    {
+      "id": "app-2",
+      "company": "Datadog",
+      "role": "Senior Systems Engineer (C++ / Linux)",
+      "location": "Bangalore / Remote",
+      "workType": "Hybrid",
+      "url": "https://careers.datadoghq.com",
+      "matchScore": 91,
+      "status": "applied",
+      "dateDiscovered": "2026-09-18",
+      "dateApplied": "2026-09-21",
+      "notes": "Applied with ATS-optimized resume. Emphasized network monitoring (SNMP/ARINC 429), kernel metrics, and Linux performance profiling.",
+      "resumeVersion": "Datadog_Senior_Systems_Engineer.pdf",
+      "screeningAnswers": {
+        "noticePeriod": "Standard 30-60 days (negotiable for priority transition)",
+        "salaryExpectation": "Competitive market standard for Senior Systems Engineer / Tech Lead"
+      }
+    }
+  ]
+}

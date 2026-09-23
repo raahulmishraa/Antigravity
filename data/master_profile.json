@@ -1,0 +1,191 @@
+{
+  "personal": {
+    "name": "Rahul Mishra",
+    "headline": "Senior Software Engineer & Tech Lead — C++ | Java | Distributed Systems",
+    "phone": "+91 79054 91905",
+    "email": "m.rahulpms@gmail.com",
+    "location": "Bangalore, India",
+    "linkedin": "https://www.linkedin.com/in/rahulmishra-82478518",
+    "github": "https://github.com/rahulmishra",
+    "website": ""
+  },
+  "preferences": {
+    "targetTitles": [
+      "Senior Software Engineer",
+      "Tech Lead",
+      "Staff Software Engineer",
+      "Principal Engineer",
+      "Distributed Systems Engineer",
+      "Backend Architect"
+    ],
+    "targetLocations": ["Bangalore, India", "Remote", "Worldwide"],
+    "workTypes": ["Remote", "Hybrid", "Full-time"],
+    "minExperienceYears": 9
+  },
+  "summary": "Senior Software Engineer and Tech Lead with 9+ years of experience building distributed, event-driven systems in C++ and Java for safety-critical aviation software. Strong grounding in Linux, concurrency, networking fundamentals and fault diagnosis, with a track record of owning features from design through production and leading small engineering teams.",
+  "skills": {
+    "Languages": ["C++", "C", "Java", "Python", "Bash", "SQL"],
+    "Systems & Concurrency": [
+      "Linux",
+      "Multithreading",
+      "Event-Driven Architecture",
+      "Socket IPC",
+      "POSIX",
+      "gdb",
+      "valgrind",
+      "perf",
+      "Fault Diagnosis",
+      "Performance Tuning"
+    ],
+    "Distributed Systems & Backend": [
+      "Microservices",
+      "Distributed Systems",
+      "Spring Boot",
+      "Spring Cloud",
+      "Kafka",
+      "RabbitMQ",
+      "Hibernate",
+      "REST APIs",
+      "Domain-Driven Design (DDD)",
+      "High-Throughput Systems"
+    ],
+    "Networking & Security": [
+      "TCP/IP",
+      "L2/L3 Networking",
+      "SNMP",
+      "TLS/PKI",
+      "Mutual TLS (mTLS)",
+      "ARINC 429",
+      "Cisco LAN/WAN",
+      "NGINX",
+      "RBAC"
+    ],
+    "Cloud & DevOps": [
+      "Docker",
+      "AWS",
+      "Redis",
+      "Jenkins CI/CD",
+      "GitLab CI",
+      "SonarQube",
+      "Git"
+    ],
+    "Specialized": [
+      "OpenCV",
+      "GStreamer",
+      "MQTT",
+      "Safety-Critical Aviation Software",
+      "Real-Time Telemetry",
+      "Angular"
+    ]
+  },
+  "experience": [
+    {
+      "company": "Boeing India Private Limited",
+      "location": "Bangalore, India",
+      "role": "Senior Software Engineer & Tech Lead",
+      "startDate": "November 2019",
+      "endDate": "Present",
+      "current": true,
+      "bullets": [
+        {
+          "id": "boeing-1",
+          "text": "Tech-led a 5-engineer squad through 3 on-schedule production releases on Boeing 777X/737 cabin systems, with zero post-go-live P1 defects over 18 months.",
+          "keywords": ["tech lead", "leadership", "production release", "boeing 777x", "cabin systems", "defect-free", "quality", "agile", "scrum", "mentorship"]
+        },
+        {
+          "id": "boeing-2",
+          "text": "Architected a C++ microservices platform of 10 core services and 130+ REST APIs for aircraft cabin systems, built on a reusable multithreaded, event-driven framework that standardized lifecycle, messaging and routing.",
+          "keywords": ["c++", "microservices", "rest api", "multithreading", "event-driven", "system architecture", "messaging", "ipc", "routing"]
+        },
+        {
+          "id": "boeing-3",
+          "text": "Built C++ services for network device management (switch/device monitoring, SNMP/REST fault ingestion, performance metrics, topology mapping), fault management, and real-time ARINC 429 data streaming.",
+          "keywords": ["c++", "snmp", "network management", "monitoring", "fault management", "arinc 429", "real-time streaming", "telemetry", "linux"]
+        },
+        {
+          "id": "boeing-4",
+          "text": "Implemented PKI-based security with mutual TLS across all services, including certificate lifecycle management and secure audit logging.",
+          "keywords": ["security", "pki", "tls", "mutual tls", "mtls", "certificates", "cryptography", "audit logging", "compliance"]
+        },
+        {
+          "id": "boeing-5",
+          "text": "Designed 6 event-driven Java/Spring Boot microservices using Kafka and RabbitMQ, cutting API latency by 30%.",
+          "keywords": ["java", "spring boot", "kafka", "rabbitmq", "event-driven", "latency reduction", "performance optimization", "microservices"]
+        },
+        {
+          "id": "boeing-6",
+          "text": "Delivered REST APIs and SDKs using Domain-Driven Design, expanding Boeing's partner ecosystem to 5+ global airlines for real-time telemetry streaming.",
+          "keywords": ["rest api", "sdk", "domain-driven design", "ddd", "telemetry", "api design", "partner integrations", "distributed systems"]
+        },
+        {
+          "id": "boeing-7",
+          "text": "Engineered a real-time cargo detection and classification system (MQTT, OpenCV, GStreamer) that improved cargo processing efficiency by 70%.",
+          "keywords": ["opencv", "computer vision", "gstreamer", "mqtt", "iot", "real-time processing", "video streaming", "efficiency"]
+        },
+        {
+          "id": "boeing-8",
+          "text": "Built an Angular cargo-tracking dashboard that cut on-call escalations by 30%, and an NGINX reverse proxy enforcing RBAC for external routing.",
+          "keywords": ["angular", "frontend", "nginx", "rbac", "reverse proxy", "on-call", "operational excellence"]
+        },
+        {
+          "id": "boeing-9",
+          "text": "Introduced SonarQube quality gates in Jenkins CI/CD, cutting technical debt by 40%; adopted across 3+ business units.",
+          "keywords": ["ci/cd", "jenkins", "sonarqube", "code quality", "static analysis", "technical debt", "devops"]
+        },
+        {
+          "id": "boeing-10",
+          "text": "Built AI-assisted SDLC tooling and an internal chatbot that reduced SME dependency and improved team productivity by 60%.",
+          "keywords": ["ai", "sdlc", "automation", "productivity", "tooling", "internal tools", "developer productivity"]
+        }
+      ]
+    },
+    {
+      "company": "HCL Infosystem Ltd",
+      "location": "Lucknow, India",
+      "role": "Network Support Engineer",
+      "startDate": "June 2015",
+      "endDate": "February 2019",
+      "current": false,
+      "bullets": [
+        {
+          "id": "hcl-1",
+          "text": "Administered Cisco LAN/WAN infrastructure across 3 enterprise sites supporting 200+ users, sustaining a 99.5% uptime SLA over 4 consecutive years with sub-4hr MTTR.",
+          "keywords": ["cisco", "lan/wan", "networking", "sla", "uptime", "mttr", "infrastructure", "troubleshooting", "tcp/ip"]
+        },
+        {
+          "id": "hcl-2",
+          "text": "Developed Python and Bash automation scripts to parse device configuration logs, reducing per-device provisioning time by 35%.",
+          "keywords": ["python", "bash", "scripting", "automation", "log parsing", "provisioning", "devops"]
+        },
+        {
+          "id": "hcl-3",
+          "text": "Built a network documentation library (topology maps, runbooks, incident plays), saving an estimated 10+ engineer-hours per quarter.",
+          "keywords": ["documentation", "runbooks", "incident management", "knowledge sharing", "topology"]
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "PG Diploma in Advanced Computing (Advanced Java & DSA)",
+      "institution": "CDAC, Bangalore, India",
+      "year": "2019"
+    },
+    {
+      "degree": "B.Tech in Electronics & Communication Engineering",
+      "institution": "Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow, India",
+      "year": "2015"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Solutions Architect – Associate",
+      "status": "In Progress"
+    },
+    {
+      "name": "Spring Professional Certification",
+      "issuer": "VMware / Broadcom",
+      "status": "In Progress"
+    }
+  ]
+}

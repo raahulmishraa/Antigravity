@@ -1,0 +1,29 @@
+{
+  "name": "job-hunting-agent",
+  "version": "1.0.0",
+  "description": "Autonomous Job Search, Resume Customization & Application Assistant Agent",
+  "main": "server/server.js",
+  "bin": {
+    "job-agent": "./bin/job-agent.js"
+  },
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "test": "node test/test_job_search.js && node test/test_tailor.js",
+    "cli": "node bin/job-agent.js"
+  },
+  "keywords": [
+    "job-search",
+    "resume-customizer",
+    "ats-optimizer",
+    "application-copilot",
+    "ai-agent"
+  ],
+  "author": "Rahul Mishra",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

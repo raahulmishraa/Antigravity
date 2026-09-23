@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobAgent AI — Autonomous Job Hunter & Resume Customizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo-icon">🚀</div>
+        <div class="brand-text">
+          <h2>JobAgent<span class="gradient-text">.ai</span></h2>
+          <p class="tagline">Tech Lead & Systems Career Copilot</p>
+        </div>
+      </div>
+
+      <!-- Auto-Pilot Status Card -->
+      <div class="autopilot-badge-card" id="autopilotCard">
+        <div class="card-header">
+          <span class="pulse-indicator off" id="autopilotPulse"></span>
+          <span class="card-title">Auto-Pilot Mode</span>
+        </div>
+        <p class="card-desc" id="autopilotStatusText">Autonomous scan: Inactive</p>
+        <div class="autopilot-toggle-row">
+          <label class="switch">
+            <input type="checkbox" id="autopilotToggle">
+            <span class="slider round"></span>
+          </label>
+          <span class="switch-label" id="autopilotToggleLabel">Enable Auto-Pilot</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-btn active" data-tab="tab-radar" id="btnTabRadar">
+          <span class="nav-icon">🛰️</span>
+          <span>Job Radar</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-studio" id="btnTabStudio">
+          <span class="nav-icon">🎯</span>
+          <span>Resume Studio</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-copilot" id="btnTabCopilot">
+          <span class="nav-icon">✍️</span>
+          <span>Application Copilot</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-tracker" id="btnTabTracker">
+          <span class="nav-icon">📊</span>
+          <span>Application Tracker</span>
+          <span class="badge" id="trackerCountBadge">0</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-profile" id="btnTabProfile">
+          <span class="nav-icon">👤</span>
+          <span>Master Profile</span>
+        </button>
+      </nav>
+
+      <div class="user-card">
+        <div class="avatar">RM</div>
+        <div class="user-info">
+          <h4 id="sidebarUserName">Rahul Mishra</h4>
+          <p id="sidebarUserRole">Tech Lead — C++ | Java</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Canvas -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <header class="topbar">
+        <div class="breadcrumb" id="breadcrumbText">Job Radar / Live Discoveries</div>
+        <div class="topbar-actions">
+          <button class="action-btn secondary" id="btnInstantScan">
+            <span>⚡ Run Instant Scan</span>
+          </button>
+          <button class="action-btn primary" id="btnPasteJdModal">
+            <span>+ Tailor Custom JD / URL</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- TAB 1: JOB RADAR -->
+      <section class="tab-panel active" id="tab-radar">
+        <div class="panel-header">
+          <div>
+            <h1>Job Radar</h1>
+            <p class="subtitle">Autonomous multi-source scanner monitoring RemoteOK, Arbeitnow, Jobicy & Tech Boards</p>
+          </div>
+          <div class="search-bar-row">
+            <div class="input-with-icon">
+              <span class="icon">🔍</span>
+              <input type="text" id="searchInput" placeholder="Search title, keywords (e.g. C++, Kafka, Tech Lead)..." value="C++, Java, Distributed Systems">
+            </div>
+            <select id="locationFilter" class="select-box">
+              <option value="all">All Locations</option>
+              <option value="remote" selected>Remote Only</option>
+              <option value="bangalore">Bangalore</option>
+              <option value="worldwide">Worldwide</option>
+            </select>
+            <button class="search-btn" id="btnSearchJobs">Search Jobs</button>
+          </div>
+        </div>
+
+        <div class="jobs-grid" id="jobsGrid">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Scanning job boards & scoring ATS match against Rahul's profile...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: RESUME STUDIO -->
+      <section class="tab-panel" id="tab-studio">
+        <div class="panel-header">
+          <div>
+            <h1>Resume Studio & ATS Optimizer</h1>
+            <p class="subtitle">Real-time keyword gap analysis, relevance scoring, and multi-format export</p>
+          </div>
+          <div class="studio-actions">
+            <button class="action-btn secondary" id="btnPrintPdf">🖨️ Print / Save PDF</button>
+            <button class="action-btn secondary" id="btnCopyMarkdown">📋 Copy Markdown</button>
+            <button class="action-btn secondary" id="btnCopyLatex">📄 Copy LaTeX</button>
+            <button class="action-btn primary" id="btnSaveToTracker">💾 Save & Track Application</button>
+          </div>
+        </div>
+
+        <div class="studio-layout">
+          <!-- Left: ATS Score & Keyword Breakdown -->
+          <div class="ats-card">
+            <h3>ATS Match Analysis</h3>
+            <div class="score-circle-container">
+              <div class="score-circle" id="atsScoreCircle">
+                <span class="score-num" id="atsScoreNumber">--</span>
+                <span class="score-pct">%</span>
+              </div>
+              <div class="score-meta">
+                <h4 id="atsVerdict">Analyzing Match...</h4>
+                <p id="atsSummary">Comparing required competencies with Rahul's 9+ years at Boeing & HCL.</p>
+              </div>
+            </div>
+
+            <div class="keyword-section">
+              <h4>Matched Keywords (<span id="matchedCount">0</span>)</h4>
+              <div class="tags-cloud" id="matchedTags"></div>
+            </div>
+
+            <div class="keyword-section">
+              <h4>Missing / Adjacent Keywords (<span id="missingCount">0</span>)</h4>
+              <div class="tags-cloud missing" id="missingTags"></div>
+            </div>
+
+            <div class="keyword-section">
+              <h4>Competitive Strengths</h4>
+              <ul class="strengths-list" id="strengthsList"></ul>
+            </div>
+          </div>
+
+          <!-- Right: Live Tailored Resume Preview -->
+          <div class="preview-container">
+            <div class="preview-toolbar">
+              <span>📄 Live ATS Resume Preview (Single-Column Standard)</span>
+              <span class="badge-role" id="targetRoleBadge">Target Role</span>
+            </div>
+            <iframe id="resumePreviewFrame" class="resume-iframe" title="Tailored Resume Preview"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: APPLICATION COPILOT -->
+      <section class="tab-panel" id="tab-copilot">
+        <div class="panel-header">
+          <div>
+            <h1>Application Copilot</h1>
+            <p class="subtitle">Tailored cover letter & 1-click clipboard answers for job portal screening questions</p>
+          </div>
+        </div>
+
+        <div class="copilot-grid">
+          <!-- Cover Letter Card -->
+          <div class="copilot-card">
+            <div class="card-top">
+              <h3>Customized Cover Letter</h3>
+              <button class="copy-pill-btn" id="btnCopyCoverLetter">📋 Copy Letter</button>
+            </div>
+            <textarea id="coverLetterBox" class="text-editor" readonly></textarea>
+          </div>
+
+          <!-- Screening Questions & Answers -->
+          <div class="copilot-card">
+            <div class="card-top">
+              <h3>Screening Questions Autofill</h3>
+              <span class="tip-pill">1-Click Copy</span>
+            </div>
+            <div class="qa-container" id="qaContainer"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: APPLICATION TRACKER -->
+      <section class="tab-panel" id="tab-tracker">
+        <div class="panel-header">
+          <div>
+            <h1>Application Pipeline Tracker</h1>
+            <p class="subtitle">Kanban pipeline tracking every role from automated discovery to offer</p>
+          </div>
+        </div>
+
+        <div class="kanban-board" id="kanbanBoard">
+          <!-- Columns -->
+          <div class="kanban-col" data-status="discovered">
+            <div class="col-header">
+              <span class="col-title">Discovered</span>
+              <span class="col-badge" id="badge-discovered">0</span>
+            </div>
+            <div class="col-cards" id="col-discovered"></div>
+          </div>
+
+          <div class="kanban-col" data-status="tailored">
+            <div class="col-header">
+              <span class="col-title">Tailored</span>
+              <span class="col-badge" id="badge-tailored">0</span>
+            </div>
+            <div class="col-cards" id="col-tailored"></div>
+          </div>
+
+          <div class="kanban-col" data-status="applied">
+            <div class="col-header">
+              <span class="col-title">Applied</span>
+              <span class="col-badge" id="badge-applied">0</span>
+            </div>
+            <div class="col-cards" id="col-applied"></div>
+          </div>
+
+          <div class="kanban-col" data-status="interviewing">
+            <div class="col-header">
+              <span class="col-title">Interviewing</span>
+              <span class="col-badge" id="badge-interviewing">0</span>
+            </div>
+            <div class="col-cards" id="col-interviewing"></div>
+          </div>
+
+          <div class="kanban-col" data-status="offer">
+            <div class="col-header">
+              <span class="col-title">Offer / Accepted</span>
+              <span class="col-badge" id="badge-offer">0</span>
+            </div>
+            <div class="col-cards" id="col-offer"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: MASTER PROFILE -->
+      <section class="tab-panel" id="tab-profile">
+        <div class="panel-header">
+          <div>
+            <h1>Master Candidate Profile</h1>
+            <p class="subtitle">The source of truth used by the ATS engine to tailor your resumes</p>
+          </div>
+          <button class="action-btn primary" id="btnSaveProfile">💾 Save Profile</button>
+        </div>
+
+        <div class="profile-editor-container">
+          <div class="profile-card">
+            <h3>Personal Information</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="profName">
+              </div>
+              <div class="form-group">
+                <label>Headline</label>
+                <input type="text" id="profHeadline">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="profEmail">
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="text" id="profPhone">
+              </div>
+              <div class="form-group">
+                <label>Location</label>
+                <input type="text" id="profLocation">
+              </div>
+              <div class="form-group">
+                <label>LinkedIn URL</label>
+                <input type="text" id="profLinkedin">
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Master Executive Summary</label>
+              <textarea id="profSummary" rows="4" class="text-editor"></textarea>
+            </div>
+          </div>
+
+          <div class="profile-card">
+            <h3>Technical Skills Hierarchy</h3>
+            <div id="skillsHierarchyContainer"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Custom JD Modal -->
+  <div class="modal-backdrop" id="customJdModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Tailor for Custom Job or URL</h3>
+        <button class="modal-close-btn" id="btnCloseModal">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Target Job Posting URL (Greenhouse, Lever, LinkedIn, etc.)</label>
+          <div class="input-with-btn">
+            <input type="url" id="modalJobUrl" placeholder="https://boards.greenhouse.io/stripe/jobs/...">
+            <button class="fetch-btn" id="btnFetchUrl">Fetch JD</button>
+          </div>
+        </div>
+        <div class="or-divider"><span>OR PASTE JOB DETAILS</span></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" id="modalCompany" placeholder="e.g. Stripe, Apple, Datadog">
+          </div>
+          <div class="form-group">
+            <label>Role / Title</label>
+            <input type="text" id="modalRole" placeholder="e.g. Senior C++ Tech Lead">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Job Description & Requirements</label>
+          <textarea id="modalJdText" rows="6" class="text-editor" placeholder="Paste the job description and required competencies here..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="action-btn secondary" id="btnCancelModal">Cancel</button>
+        <button class="action-btn primary" id="btnStartTailorCustom">Optimize & Tailor Resume</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
