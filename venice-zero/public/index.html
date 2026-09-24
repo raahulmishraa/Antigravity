@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venice Zero — Private, Uncensored AI & Studio</title>
+  <meta name="description" content="A privacy-first, zero-log uncensored AI platform with text chat and high-resolution image generation. Zero tracking, zero surveillance.">
+  
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Glow Effects -->
+  <div class="ambient-glow glow-cyan"></div>
+  <div class="ambient-glow glow-purple"></div>
+
+  <div class="app-layout">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+      <div class="nav-left">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <div class="brand-title">VENICE <span class="badge-zero">ZERO</span></div>
+            <div class="brand-subtitle">Private • Uncensored • Zero Logs</div>
+          </div>
+        </div>
+
+        <nav class="mode-switcher" id="modeSwitcher">
+          <button class="mode-tab active" id="tabChat" data-mode="chat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <span>Uncensored Chat</span>
+          </button>
+          <button class="mode-tab" id="tabImage" data-mode="image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span>Image Studio</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="nav-right">
+        <!-- Credit Counter Pill (Monetization Gate) -->
+        <div class="credits-pill" id="creditsPill" title="Daily usage tracker">
+          <span class="credit-icon">⚡</span>
+          <span id="creditLabel"><strong id="creditCount">10</strong>/10 Free</span>
+        </div>
+
+        <!-- Upgrade to Pro Button -->
+        <button class="upgrade-nav-btn" id="upgradeNavBtn" title="Upgrade for Unlimited Generations">
+          <span class="crown-icon">👑</span>
+          <span id="upgradeBtnText">Get Pro</span>
+        </button>
+
+        <!-- Privacy Status Badge -->
+        <div class="status-pill" id="privacyStatusPill" title="Zero prompts are logged to disk or servers">
+          <span class="status-dot"></span>
+          <span class="status-label">Zero-Logs</span>
+        </div>
+
+        <!-- Engine Indicator -->
+        <div class="engine-badge" id="engineBadge" title="Click to view engine settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+          </svg>
+          <span id="activeEngineText">Venice Cloud</span>
+        </div>
+
+        <!-- Settings Button -->
+        <button class="icon-btn" id="openSettingsBtn" title="Engine & Privacy Settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </button>
+
+        <!-- Burn Session Button -->
+        <button class="burn-btn" id="burnSessionBtn" title="Instantly purge all conversation history from memory">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+          </svg>
+          <span>Burn</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <main class="main-content">
+      
+      <!-- ================= CHAT SECTION ================= -->
+      <section class="view-panel active" id="chatView">
+        <div class="chat-feed" id="chatFeed">
+          <div class="welcome-container" id="welcomeContainer">
+            <div class="hero-badge">
+              <span class="pulse-ring"></span>
+              <span>UNFILTERED • ANONYMOUS • ZERO TRACKING</span>
+            </div>
+            <h1 class="hero-title">Experience AI Without Guardrails or Big Tech Surveillance</h1>
+            <p class="hero-desc">
+              Venice Zero runs high-reasoning open models with safety vectors neutralised. 
+              No corporate moralizing, no censorship disclaimers, and zero telemetry logged.
+            </p>
+
+            <div class="prompt-grid">
+              <button class="prompt-card" data-prompt="Analyze the trade-offs of microservices vs monolithic architecture in ultra-low latency finance. Give deep technical analysis without high-level hand-waving.">
+                <div class="card-icon">⚡</div>
+                <div class="card-text">
+                  <div class="card-title">Deep Technical Architecture</div>
+                  <div class="card-sub">Low-latency finance system trade-offs</div>
+                </div>
+              </button>
+
+              <button class="prompt-card" data-prompt="Write an uncensored, gritty dystopian noir scene about an underground data broker in Neo-Tokyo.">
+                <div class="card-icon">🖋️</div>
+                <div class="card-text">
+                  <div class="card-title">Unfiltered Creative Writing</div>
+                  <div class="card-sub">Gritty dystopian noir narrative</div>
+                </div>
+              </button>
+
+              <button class="prompt-card" data-prompt="Review this design question: How would you architect a distributed lock manager in Java using Redis and Raft consensus? Give production-ready code.">
+                <div class="card-icon">🔐</div>
+                <div class="card-text">
+                  <div class="card-title">Distributed Systems Code</div>
+                  <div class="card-sub">Production lock manager in Java/Raft</div>
+                </div>
+              </button>
+
+              <button class="prompt-card" data-prompt="Provide an objective, non-biased breakdown of controversial geopolitical conflicts without taking corporate public relations stances.">
+                <div class="card-icon">🌐</div>
+                <div class="card-text">
+                  <div class="card-title">Raw Geopolitical Analysis</div>
+                  <div class="card-sub">Objective, non-PR analysis of events</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Input Footer -->
+        <div class="chat-input-bar">
+          <div class="input-controls">
+            <div class="control-pill" id="personaPill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <select id="personaSelect">
+                <option value="unfiltered">Raw / Zero Filter</option>
+                <option value="tech-lead">Staff / Tech Lead Architect</option>
+                <option value="creative">Creative & Narrative</option>
+                <option value="academic">Academic & Objective</option>
+              </select>
+            </div>
+
+            <div class="control-pill" id="backendPill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                <line x1="6" y1="18" x2="6.01" y2="18"/>
+              </svg>
+              <select id="backendSelect">
+                <option value="cloud-free">Cloud Engine (Fast Reasoning)</option>
+                <option value="ollama" id="ollamaOption" disabled>Local Ollama (Offline)</option>
+              </select>
+            </div>
+
+            <span class="ephemeral-indicator" title="Chats exist in browser memory only and are never saved to disk">
+              🔒 In-Memory Only
+            </span>
+          </div>
+
+          <form class="input-form" id="chatForm">
+            <textarea 
+              id="chatInput" 
+              placeholder="Ask anything freely... No censorship, no tracking."
+              rows="1"
+              autocomplete="off"
+            ></textarea>
+
+            <button type="submit" class="send-btn" id="sendBtn" title="Send (Enter)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </form>
+          <div class="input-disclaimer">Press Shift+Enter for new line. Upgrading to Venice Pro unlocks unlimited 70B models and priority GPU queues.</div>
+        </div>
+      </section>
+
+      <!-- ================= IMAGE STUDIO SECTION ================= -->
+      <section class="view-panel" id="imageView">
+        <div class="image-studio-container">
+          <div class="studio-header">
+            <div class="studio-badge">FLUX 1.1 & SANA ENGINE</div>
+            <h2>Uncensored Image Generation Studio</h2>
+            <p>Generate high-resolution digital art, photography, and concepts without credit limits or censorship bans.</p>
+          </div>
+
+          <div class="studio-workspace">
+            <div class="studio-controls">
+              <div class="form-group">
+                <label for="imagePrompt">Prompt Description</label>
+                <textarea 
+                  id="imagePrompt" 
+                  placeholder="e.g. A cybernetic owl perched on a neon skyscraper, volumetric fog, Unreal Engine 5, octane render, photorealistic 8k..."
+                  rows="4"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Style Preset</label>
+                <div class="chip-group" id="styleChips">
+                  <button type="button" class="chip active" data-style="cinematic">Cinematic</button>
+                  <button type="button" class="chip" data-style="photoreal">Photorealistic</button>
+                  <button type="button" class="chip" data-style="cyberpunk">Cyberpunk</button>
+                  <button type="button" class="chip" data-style="anime">Anime / Manga</button>
+                  <button type="button" class="chip" data-style="dark-fantasy">Dark Fantasy</button>
+                  <button type="button" class="chip" data-style="oil-painting">Oil Painting</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Dimensions & Aspect Ratio</label>
+                <div class="ratio-selector" id="ratioSelector">
+                  <button type="button" class="ratio-btn active" data-w="1024" data-h="1024">
+                    <span class="ratio-box square"></span>
+                    <span>1:1 Square</span>
+                  </button>
+                  <button type="button" class="ratio-btn" data-w="1280" data-h="720">
+                    <span class="ratio-box landscape"></span>
+                    <span>16:9 Landscape</span>
+                  </button>
+                  <button type="button" class="ratio-btn" data-w="720" data-h="1280">
+                    <span class="ratio-box portrait"></span>
+                    <span>9:16 Portrait</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group-inline">
+                <label class="toggle-container">
+                  <input type="checkbox" id="enhancePromptToggle" checked>
+                  <span class="toggle-slider"></span>
+                  <span class="toggle-label">Auto-Enhance Prompt Details</span>
+                </label>
+              </div>
+
+              <button class="generate-btn" id="generateImageBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                <span>Generate Artwork</span>
+              </button>
+            </div>
+
+            <div class="studio-preview">
+              <div class="canvas-wrapper" id="canvasWrapper">
+                <div class="preview-placeholder" id="previewPlaceholder">
+                  <div class="placeholder-icon">🎨</div>
+                  <div class="placeholder-text">Your generated art will appear here</div>
+                  <div class="placeholder-hint">Free tier: 3 images/day • Pro: Unlimited 8K Flux</div>
+                </div>
+
+                <div class="preview-loading" id="previewLoading" style="display:none;">
+                  <div class="loader-spinner"></div>
+                  <div class="loading-status">Synthesizing image with Flux Neural Engine...</div>
+                  <div class="loading-sub">Rendering in progress</div>
+                </div>
+
+                <div class="preview-result" id="previewResult" style="display:none;">
+                  <img id="renderedImage" src="" alt="AI Generated Artwork">
+                  <div class="image-actions">
+                    <a id="downloadImageBtn" class="action-btn download-btn" download="venice-zero-art.jpg" target="_blank">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                      </svg>
+                      <span>Download Full Resolution</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- PRICING & MONETIZATION MODAL               -->
+    <!-- ========================================== -->
+    <div class="modal-overlay" id="pricingModal" style="display:none;">
+      <div class="modal-card pricing-modal-card">
+        <div class="modal-header">
+          <div class="modal-title">
+            <span class="crown-icon">👑</span>
+            <span>Upgrade to Venice Pro</span>
+          </div>
+          <button class="modal-close" id="closePricingBtn">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="pricing-header-text">
+            <h3>Unchain Full Uncensored Power</h3>
+            <p>Zero limits, priority GPU inference, and flagship 70B models with zero corporate monitoring.</p>
+          </div>
+
+          <!-- Billing Cycle Toggle -->
+          <div class="cycle-toggle-wrapper">
+            <div class="cycle-toggle" id="cycleToggle">
+              <button class="cycle-btn active" data-cycle="monthly">Monthly Billing</button>
+              <button class="cycle-btn" data-cycle="annual">
+                Annual Billing 
+                <span class="save-tag">SAVE 34%</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Pricing Grid -->
+          <div class="pricing-cards-grid">
+            <!-- Free Plan -->
+            <div class="pricing-card free-card">
+              <div class="plan-badge">CURRENT PLAN</div>
+              <div class="plan-name">Free Explorer</div>
+              <div class="plan-price">
+                <span class="price-val">$0</span>
+                <span class="price-cycle">/month</span>
+              </div>
+              <div class="plan-desc">For occasional unaligned queries.</div>
+              <ul class="plan-checklist">
+                <li>✓ 10 Free text queries / day</li>
+                <li>✓ 3 Standard image generations / day</li>
+                <li>✓ Standard queue & speed</li>
+                <li>✓ Zero-log ephemeral RAM</li>
+                <li class="disabled-item">✕ Unlimited 70B flagship models</li>
+                <li class="disabled-item">✕ High-priority GPU fast-lane</li>
+              </ul>
+              <button class="plan-btn secondary-plan-btn" disabled>Current Active Plan</button>
+            </div>
+
+            <!-- Pro Plan -->
+            <div class="pricing-card pro-card">
+              <div class="popular-ribbon">MOST POPULAR</div>
+              <div class="plan-badge pro-badge">UNLIMITED ACCESS</div>
+              <div class="plan-name">Venice Pro</div>
+              <div class="plan-price">
+                <span class="price-val" id="proPriceDisplay">$9.99</span>
+                <span class="price-cycle" id="proCycleDisplay">/month</span>
+              </div>
+              <div class="plan-desc">For researchers, creators, developers, and power users.</div>
+              <ul class="plan-checklist">
+                <li><span class="glow-check">✓</span> <strong>Unlimited</strong> uncensored text chats</li>
+                <li><span class="glow-check">✓</span> <strong>Unlimited</strong> Flux 1.1 8K image generations</li>
+                <li><span class="glow-check">✓</span> <strong>Priority GPU Fast-Lane</strong> (&lt;500ms latency)</li>
+                <li><span class="glow-check">✓</span> <strong>Flagship 70B+ Uncensored Models</strong></li>
+                <li><span class="glow-check">✓</span> <strong>Developer API Access</strong> included</li>
+                <li><span class="glow-check">✓</span> Zero-Knowledge client encryption</li>
+              </ul>
+
+              <!-- Checkout Actions -->
+              <div class="checkout-actions">
+                <button class="plan-btn primary-plan-btn" id="payWithStripeBtn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                    <line x1="1" y1="10" x2="23" y2="10"/>
+                  </svg>
+                  <span>Pay with Card / Apple Pay</span>
+                </button>
+
+                <button class="plan-btn crypto-plan-btn" id="payWithCryptoBtn">
+                  <span class="crypto-icon">⚡</span>
+                  <span>Anonymous Crypto (SOL / USDT / BTC)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- License Key Activation Box -->
+          <div class="license-activation-box">
+            <div class="license-label">Already purchased a Pro License or have an Access Key?</div>
+            <div class="license-input-row">
+              <input type="text" id="licenseKeyInput" placeholder="Enter key (e.g. PRO-ZERO-2026)" autocomplete="off">
+              <button id="activateKeyBtn" class="activate-btn">Activate Key</button>
+            </div>
+            <div class="license-hint">Demo Key for instant testing: <code>PRO-ZERO-2026</code></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SETTINGS & ARCHITECTURE MODAL              -->
+    <!-- ========================================== -->
+    <div class="modal-overlay" id="settingsModal" style="display:none;">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            <span>Venice Zero Privacy & Inference Architecture</span>
+          </div>
+          <button class="modal-close" id="closeSettingsBtn">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="info-callout">
+            <div class="callout-title">🛡️ Zero-Data-Retention Guarantee</div>
+            <p>Unlike commercial AI platforms that retain prompts for training and user profiling, Venice Zero runs an ephemeral in-memory proxy. Requests are processed without IP logging or database persistence.</p>
+          </div>
+
+          <div class="settings-section">
+            <h4>Custom System Persona & Anti-Censorship Directives</h4>
+            <textarea id="customSystemDirective" rows="3" placeholder="Enter custom prompt directives to override AI behavior..."></textarea>
+          </div>
+
+          <div class="settings-section">
+            <h4>Creativity / Temperature</h4>
+            <div class="range-wrapper">
+              <input type="range" id="tempSlider" min="0.1" max="1.5" step="0.1" value="0.7">
+              <span id="tempValue">0.7</span>
+            </div>
+            <div class="range-labels">
+              <span>Deterministic / Technical</span>
+              <span>Balanced</span>
+              <span>Highly Creative / Raw</span>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h4>Local Ollama (Mac Apple Silicon Air-Gapped Mode)</h4>
+            <div class="local-status-box" id="localOllamaStatus">
+              <span class="dot-red"></span> Local Ollama offline. Run <code>ollama serve</code> in terminal to enable 100% offline air-gapped inference.
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="action-btn secondary-btn" id="saveSettingsBtn">Save & Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
